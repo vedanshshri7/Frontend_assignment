@@ -274,6 +274,58 @@ body.dark {
   background-color: #0056b3;
 }
 
+.history_btn:hover{
+  background-color:#0056b3;
+  color: white;
+}
+.close_btn:hover{
+  background-color:#0056b3;
+  color: white;
+}
+.history_section {
+  position: absolute;
+  left: 0;
+  top: 0%;
+  width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+}
+.history-container {
+  padding: 1rem;
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #333;
+  scroll-behavior: smooth;
+}
+
+.history-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history-container::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 10px;
+}
+
+.history-container::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+  border: 2px solid #333;
+}
+
+.history-container::-webkit-scrollbar-thumb:hover {
+  background-color: #777;
+}
 .history_section {
   background: white;
   padding: 10px;

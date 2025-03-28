@@ -57,7 +57,7 @@ function App() {
   return (
     <DarkModeProvider>
       <div className="App">
-        <div className="header_section">
+      <div className="header_section">
           <h1>Dummy SQL Compiler</h1>
           <div className="dark_mode_icon">
             <DarkModeToggle />
