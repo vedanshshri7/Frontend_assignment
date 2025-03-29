@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useCallback } from "react";
 import "./App.css";
 import { Button, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -21,10 +21,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [toggleButton, setToggleButton] = useState(false);
 
-  // Handle Query Execution (Only on Button Click)
   const handleRunQuery = () => {
-    if (!queryText.trim()) return; // Prevent empty execution
-
+    setQueryText(queryText);
+    if (!queryText.trim()) return; 
     let result = data.find((d) => d.query === queryText) || data[2];
     setLoading(true);
     setTimeout(() => {
@@ -39,7 +38,7 @@ function App() {
 
   const handleSuggestion = (sgstn) => {
     setQueryText(sgstn); 
-    setTableData(null);   
+    setTableData(null);  
   };
 
   const handleDeleteHistory = (id) => {
@@ -49,12 +48,35 @@ function App() {
 
   const handleReuseHistory = (q) => {
     setQueryText(q);
-    setTableData(null); 
+    setTableData(null);
   };
 
   const handleToggleBtn = () => {
     setToggleButton(!toggleButton);
   };
+
+  const ShowTableData = useCallback(() => {
+    return (
+      <div>
+        {!loading ? (
+              
+      tableData ? (
+      <Suspense fallback={<div></div>}>
+        <TableGrid
+          headCells={tableData?.headcells}
+          rows={tableData?.output}
+          page_no={page}
+          rows_per_page={rowsPerPage}
+        />
+      </Suspense>
+    ) : (
+      <p className="loading_text">Run a query to see results</p>
+    )): (
+      <p className="loading_text">Loading...</p>
+    )}
+    </div>
+    )
+  }, [tableData]);
 
   return (
     <DarkModeProvider>
@@ -118,36 +140,22 @@ function App() {
           </Dropdown>
 
           <div className="query_field">
-            <SqlEditor queryText={queryText} setQueryText={setQueryText} /> {/* ✅ Pass correct prop */}
+          <SqlEditor queryText={queryText} setQueryText={setQueryText} onRunQuery={handleRunQuery} />
           </div>
 
           <div className="run-query-container">
-            <Button className="run_query_btn" onClick={handleRunQuery}>
-               Run Query
-            </Button>
+          <Button className="run_query_btn" onClick={handleRunQuery} title="Ctrl + Enter">
+                  Run Query
+          </Button>
           </div>
 
           <div className="flexi-box">
             <div className="output_section">
-              {!loading ? (
-                tableData ? (
-                  <Suspense fallback={<div></div>}>
-                    <TableGrid
-                      headCells={tableData.headcells}
-                      rows={tableData.output}
-                      page_no={page}
-                      rows_per_page={rowsPerPage}
-                    />
-                  </Suspense>
-                ) : (
-                  <p className="loading_text">Run a query to see results</p> 
-                )
-              ) : (
-                <p className="loading_text">Loading...</p>
-              )}
+              
+              <ShowTableData/>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
     </DarkModeProvider>
   );
