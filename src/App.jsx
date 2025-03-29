@@ -21,12 +21,14 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [toggleButton, setToggleButton] = useState(false);
 
+  // Handle Query Execution (Only on Button Click)
   const handleRunQuery = () => {
-    if (!queryText.trim()) return; 
+    if (!queryText.trim()) return; // Prevent empty execution
+
     let result = data.find((d) => d.query === queryText) || data[2];
     setLoading(true);
     setTimeout(() => {
-      setTableData(result); 
+     setTableData(result); 
       setLoading(false);
     }, 400);
 
@@ -37,7 +39,7 @@ function App() {
 
   const handleSuggestion = (sgstn) => {
     setQueryText(sgstn); 
-    setTableData(null);  
+    setTableData(null);   
   };
 
   const handleDeleteHistory = (id) => {
@@ -57,8 +59,30 @@ function App() {
   return (
     <DarkModeProvider>
       <div className="App">
-      <div className="header_section">
-          <h1>Dummy SQL Compiler</h1>
+        <div className="header_section">
+        <div>
+              <Button onClick={handleToggleBtn} className="history_btn" sx={{fontSize: '2rem'}}>≡</Button>
+              <div
+                className={`history_section ${toggleButton ? "" : "toggle"}`}
+                style={{ overflow: "hidden" }}
+              >
+                <div className="history-container">
+                  <h4>History</h4>
+                  {history.map((h, idx) => (
+                    <div className="history_row history_border" key={idx}>
+                      <p className="" onClick={() => handleReuseHistory(h)}>
+                        {h}
+                      </p>
+                      <IconButton aria-label="delete" onClick={() => handleDeleteHistory(idx)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </div>
+                  ))}
+                  </div>
+                  <Button onClick={handleToggleBtn} className="history_btn" sx={{fontSize: '1.5rem', width: '3rem', height: '3rem'}}>X</Button>
+              </div>
+            </div>
+          <h1>ATLAN SQL Compiler</h1>
           <div className="dark_mode_icon">
             <DarkModeToggle />
           </div>
@@ -78,7 +102,7 @@ function App() {
         <div className="query_section">
           <Dropdown>
             <Dropdown.Toggle className="suggestion_button" id="dropdown-basic">
-              Suggestions
+              Queries
             </Dropdown.Toggle>
             <Dropdown.Menu className="suggestions_menu">
               {suggestions.map((sgstn, idx) => (
@@ -94,35 +118,16 @@ function App() {
           </Dropdown>
 
           <div className="query_field">
-            <SqlEditor queryText={queryText} setQueryText={setQueryText} /> 
+            <SqlEditor queryText={queryText} setQueryText={setQueryText} /> {/* ✅ Pass correct prop */}
           </div>
 
           <div className="run-query-container">
-          <Button className="run_query_btn" onClick={handleRunQuery}>
-            Run Query
-          </Button>
+            <Button className="run_query_btn" onClick={handleRunQuery}>
+               Run Query
+            </Button>
           </div>
-          <div className="flexi-box">
-            <div>
-              <Button onClick={handleToggleBtn}>≡</Button>
-              <div
-                className={`history_section ${toggleButton ? "" : "toggle"}`}
-                style={{ overflow: "hidden" }}
-              >
-                <h3>History</h3>
-                {history.map((h, idx) => (
-                  <div className="history_row history_border" key={idx}>
-                    <p className="" onClick={() => handleReuseHistory(h)}>
-                      {h}
-                    </p>
-                    <IconButton aria-label="delete" onClick={() => handleDeleteHistory(idx)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </div>
-                ))}
-              </div>
-            </div>
 
+          <div className="flexi-box">
             <div className="output_section">
               {!loading ? (
                 tableData ? (
@@ -142,7 +147,7 @@ function App() {
               )}
             </div>
           </div>
-        </div>
+        </div> 
       </div>
     </DarkModeProvider>
   );
