@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { DarkModeProvider } from "./DarkModeContext.js";
 import DarkModeToggle from "./components/TableGrid/DarkModeToggle";
 import SqlEditor from "./components/SqlEditor";
-
+import { downloadJSON } from "./data/downloadJSON";
 function App() {
   const TableGrid = React.lazy(() => import("./components/TableGrid/TableGrid"));
 
@@ -54,6 +54,14 @@ function App() {
   const handleToggleBtn = () => {
     setToggleButton(!toggleButton);
   };
+  const handleDownloadJSON = () => {
+    if (!tableData) {
+      setTimeout(() => alert("No query results to download!"), 0);
+      return;
+    }
+    setTimeout(() => downloadJSON(tableData), 0);
+  };
+
 
   const ShowTableData = useCallback(() => {
     return (
@@ -142,11 +150,15 @@ function App() {
           <div className="query_field">
           <SqlEditor queryText={queryText} setQueryText={setQueryText} onRunQuery={handleRunQuery} />
           </div>
-
-          <div className="run-query-container">
-          <Button className="run_query_btn" onClick={handleRunQuery} title="Ctrl + Enter">
-                  Run Query
-          </Button>
+          <div className="btn-container">
+            <div className="run-query-container">
+              <Button className="run_query_btn" onClick={handleRunQuery} title="Ctrl + Enter">
+                Run Query
+              </Button>
+              <Button className="download_json_btn" onClick={handleDownloadJSON}>
+                Download JSON
+              </Button>
+            </div>
           </div>
 
           <div className="flexi-box">
