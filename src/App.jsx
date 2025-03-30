@@ -4,17 +4,18 @@ import { Button, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Dropdown } from "react-bootstrap";
-import { data, suggestions } from "./sqlData";
+import { data, suggestions } from "./data/sqlData";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DarkModeProvider } from "./DarkModeContext.js";
 import DarkModeToggle from "./components/TableGrid/DarkModeToggle";
 import SqlEditor from "./components/SqlEditor";
 import { downloadJSON } from "./data/downloadJSON";
 
+// ✅ Preload `TableGrid` to reduce lazy-load delay
 const TableGrid = React.lazy(() => import("./components/TableGrid/TableGrid"));
 
 function App() {
-  const [queryText, setQueryText] = useState(""); 
+  const [queryText, setQueryText] = useState("-- Select a query and press 'Run Query' to execute "); 
   const [history, setHistory] = useState([]);
   const [tableData, setTableData] = useState(null);
   const [page, setPage] = useState(0);
@@ -23,23 +24,33 @@ function App() {
   const [toggleButton, setToggleButton] = useState(false);
   const [isPending, startTransition] = useTransition();
 
+  // ✅ Preload dynamically imported components for faster rendering
   useEffect(() => {
     import("./components/TableGrid/TableGrid");
   }, []);
 
+  // ✅ Optimized Query Execution
   const handleRunQuery = () => {
-    if (!queryText.trim()) return; 
-    let result = data.find((d) => d.query === queryText) || data[2];
-
+    const selectedText = window.getSelection().toString().trim() || queryText.trim(); // Use selected text or full queryText
+  
+    if (!selectedText || selectedText.startsWith("--")) {
+      alert("Query is not selected! Please select a query and press 'Run Query'.");
+      return;
+    }
+  
+    let result = data.find((d) => d.query === selectedText) || data[2];
+  
     startTransition(() => {
-      setTableData(result);
+      setTableData(result); // ✅ Non-blocking state update
     });
-
-    setHistory((prevHistory) => [...prevHistory, queryText]);
+  
+    setHistory((prevHistory) => [...prevHistory, selectedText]);
     setPage(0);
     setRowsPerPage(10);
   };
-
+  
+  
+  // ✅ Optimized Query Selection (Batch state updates)
   const handleSuggestion = (sgstn) => {
     setQueryText(sgstn);
     setTableData(null);
@@ -58,6 +69,7 @@ function App() {
     setToggleButton((prev) => !prev);
   };
 
+  // ✅ Non-blocking download JSON function
   const handleDownloadJSON = () => {
     if (!tableData) {
       setTimeout(() => alert("No query results to download!"), 0);
@@ -66,6 +78,7 @@ function App() {
     setTimeout(() => downloadJSON(tableData), 0);
   };
 
+  // ✅ Memoized Table Rendering to prevent unnecessary re-renders
   const showTableData = useMemo(() => {
     return (
       <div>
@@ -117,7 +130,7 @@ function App() {
           <div>
             <IconButton aria-label="GitHub" className="github_icon">
               <a rel="noopener noreferrer" href="https://github.com/vedanshshri7/Frontend_assignment" target="_blank">
-                <GitHubIcon style={{ fontSize: "30px" }} />
+                <GitHubIcon/>
               </a>
             </IconButton>
           </div>

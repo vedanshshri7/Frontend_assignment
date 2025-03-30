@@ -3,7 +3,7 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    fontSize: "20pt",
+    fontSize: "2rem",
     "& .MuiInputBase_root": {
       color: "white",
     },
@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme) => ({
     height: "8vh",
     display: "flex",
     justifyContent: "space-between",
-    padding: "0 30px",
+    padding: "0 3rem",
     alignItems: "center",
     background: "#283D4A !important",
   },
@@ -91,7 +91,7 @@ export const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#06588ae3 !important",
     },
-    height: "47px",
+    height: "4.7rem",
     backgroundColor: "#283D4A",
     color: "white",
     "& > .MuiTableCell-root": {
@@ -118,45 +118,45 @@ export const useStyles = makeStyles((theme) => ({
     color: "#14AFF1",
   },
   TableCell: {
-    fontSize: "13px",
-    padding: "5px",
-    height: "5px",
+    fontSize: "1.3rem",
+    padding: ".5rem",
+    height: ".5rem",
   },
   tableTool: {
-    margin: "0 15px",
+    margin: "0 1.5rem",
     display: "flex",
     justifyContent: "end",
-    fontSize: "13px",
+    fontSize: "1.3rem",
   },
   footerIcon: {
     background: "white",
-    borderRadius: "15px",
+    borderRadius: "1.5rem",
   },
   scrollTrackHorizontal: {
     background: "transparent",
-    bottom: "2px",
+    bottom: ".2rem",
     width: "100%",
   },
   scrollTrackVertical: {
     background: "transparent",
-    right: "2px",
-    top: "2px",
-    bottom: "2px",
-    width: "5px",
+    right: ".2rem",
+    top: ".2rem",
+    bottom: ".2rem",
+    width: ".5rem",
   },
   scrollThumbHorizontal: {
-    height: "4px",
-    borderRadius: "4px",
-    boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.16)",
+    height: ".4rem",
+    borderRadius: ".4rem",
+    boxShadow: "0 .2rem .4rem 0 rgba(0, 0, 0, 0.16)",
     backgroundColor: "#ffffff4f",
     "&:hover": {
       background: "#fff",
     },
   },
   scrollThumbVertical: {
-    width: "4px",
-    borderRadius: "4px",
-    boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.16)",
+    width: ".4rem",
+    borderRadius: ".4rem",
+    boxShadow: "0 .2rem .4rem 0 rgba(0, 0, 0, 0.16)",
     backgroundColor: "#ffffff4f",
     "&:hover": {
       background: "#fff",

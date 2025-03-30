@@ -28,7 +28,10 @@ const SqlEditor = ({ queryText, setQueryText, onRunQuery }) => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onRunQuery]); 
-
+  const getResponsiveFontSize = (rem) => {
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    return rem * rootFontSize;
+  };
   return (
     <div className="sql-editor-container">
       <Dropdown className="theme-selector">
@@ -55,12 +58,13 @@ const SqlEditor = ({ queryText, setQueryText, onRunQuery }) => {
         mode="sql"
         theme={theme}
         name="sql-editor"
-        fontSize={18}
+        fontSize={getResponsiveFontSize(1.3)}
         width="100%"
         height="100%"
         value={queryText} 
         onChange={(newValue) => setQueryText(newValue)}
-        editorProps={{ $blockScrolling: true }}
+        editorProps={{ $blockScrolling: true,  }}
+        
       />
     </div>
   );

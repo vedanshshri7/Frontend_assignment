@@ -1,11 +1,11 @@
 export const suggestions = [
   "SELECT * FROM territories;",
-  "SELECT * FROM suppliers;",
+  "SELECT * FROM suppliers WHERE supplierID < 30;",
   "SELECT * FROM shippers WHERE shipperID <= 3;",
   "SELECT * FROM regions;",
-  "SELECT * FROM products WHERE productID < 50;",
+  "SELECT * FROM products WHERE productID < 80;",
   "SELECT * FROM orders;",
-  "SELECT * FROM order_details;",
+  "SELECT * FROM order_details WHERE productID < 100;",
   "SELECT * FROM employees;",
 ];
 
@@ -303,7 +303,7 @@ export const data = [
   },
   {
     id: 1,
-    query: "SELECT * FROM suppliers;",
+    query: "SELECT * FROM suppliers WHERE supplierID < 30;",
     headcells: [
       {
         id: "supplierID",
@@ -869,7 +869,7 @@ export const data = [
   },
   {
     id: 4,
-    query: "SELECT * FROM products WHERE productID < 50;",
+    query: "SELECT * FROM products WHERE productID < 80;",
     headcells: [
       {
         id: "productID",
@@ -15233,7 +15233,7 @@ export const data = [
   },
   {
     id: 6,
-    query: "SELECT * FROM order_details;",
+    query: "SELECT * FROM order_details WHERE productID < 100;",
     headcells: [
       {
         id: "orderID",

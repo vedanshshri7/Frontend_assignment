@@ -7,14 +7,27 @@
 
 .flexi-box {
   display: flex;
-  gap: 10px;
-  position: relative; /* Fixes history section alignment */
+  gap: 1rem;
+  position: relative; 
+}
+/* General Styles */
+p {
+  margin-top: auto !important;
 }
 
+a {
+  text-decoration: none;
+  color: black !important;
+}
+
+h1 {
+  margin-right: 4rem;
+}
+/* Header Section */
 .header_section {
   height: 5vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1vh;
   margin-bottom: 1.2rem;
@@ -24,37 +37,39 @@
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: .1rem;
   background: linear-gradient(45deg, #007bff, #00d4ff);
   -webkit-background-clip: text;
   background-clip:text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: .2rem .2rem .4rem rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
 }
-
 
 .dark_mode_icon {
   position: absolute !important;
   top: 1vh;
   right: 4vw;
-  color: black;
+  color: black; 
   font-size: large !important;
   transition: color 0.3s ease-in-out;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 .dark_mode_icon:hover{
   background-color: #ffffff;
   border-radius: 50%;
 }
-
+/*github icon*/
 .github_icon {
   position: absolute !important;
   top: 1vh;
   right: 1vw;
-  color: black; 
-  font-size: large !important;
+  color: black;
   padding: 0;
   transition: color 0.3s ease-in-out;
+}
+.github_icon a{
+  font-size: .9rem;
 }
 
 body.dark .dark_mode_icon {
@@ -67,7 +82,6 @@ body.dark .github_icon{
   background-color: white;
 }
 
-/* Query Section */
 .query_section {
   width: 85vw;
   margin: auto;
@@ -76,7 +90,14 @@ body.dark .github_icon{
   align-items: center;
   padding: 1rem;
 }
-
+.query_field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2vh 0;
+}
+/*Suggestion button*/
 .suggestion_button {
   background-color: #555555 !important;
 }
@@ -86,7 +107,7 @@ body.dark .github_icon{
 }
 
 .suggestions_menu {
-  box-shadow: 3px 6px #88888878;
+  box-shadow: .3rem .6rem #88888878;
 }
 
 .suggestions_item {
@@ -97,21 +118,14 @@ body.dark .github_icon{
   background-color: #d1d1d15a !important;
 }
 
-.query_field {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2vh 0;
-}
 
 .sql-editor-container {
   width: 100%;
-  height: 350px; /*Fixed editor height */
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  height: 35rem; 
+  border: .1rem solid #ccc;
+  border-radius: .5rem;
   overflow: hidden;
-  padding: 10px;
+  padding: 1rem;
 }
 .theme-selector{
   display: flex;
@@ -123,32 +137,29 @@ body.dark .github_icon{
 }
 
 .query_submit {
-  height: 50px;
+  height: 5rem;
   width: 12vw;
   font-weight: bold;
 }
-
-/* Output Section */
+/*Output sec*/
 .output_section {
   width: 84vw;
   height: 60vh;
-  border: 1px solid rgba(0, 0, 0, 0.474);
-  border-radius: 5px;
+  border: .1rem solid rgba(0, 0, 0, 0.474);
+  border-radius: .5rem;
   margin-bottom: 5vh;
   overflow-y: auto;
-  padding: 2px;
+  padding: .2rem;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   overflow-y: hidden;
 }
 
 
 body.dark .output_section * {
-  background-color: #272822 !important; /* Force background on all child elements */
+  background-color: #272822 !important; 
   color: white !important;
-  
 }
-
-
+/* History Section  */
 .history_btn:hover{
   background-color:#0056b3;
   color: white;
@@ -161,14 +172,14 @@ body.dark .output_section * {
   position: absolute;
   left: 0;
   top: 0%;
-  width: 400px;
+  width: 30rem;
   height: 100vh;
   overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border: .1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: .5rem;
   background-color: white;
   color: black;
-  padding: 10px;
+  padding: 1rem;
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
   display: flex;
@@ -184,18 +195,18 @@ body.dark .output_section * {
 }
 
 .history-container::-webkit-scrollbar {
-  width: 8px;
+  width: .8rem;
 }
 
 .history-container::-webkit-scrollbar-track {
   background: #333;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 .history-container::-webkit-scrollbar-thumb {
   background-color: #555;
-  border-radius: 10px;
-  border: 2px solid #333;
+  border-radius: 1rem;
+  border: .2rem solid #333;
 }
 
 .history-container::-webkit-scrollbar-thumb:hover {
@@ -206,7 +217,7 @@ body.dark .output_section * {
 body.dark .history_section {
   background-color: #333 !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: .1rem solid rgba(255, 255, 255, 0.2);
 }
 
 body.dark .history_row {
@@ -225,7 +236,7 @@ body.dark .history_row:hover {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  padding: 5px 0;
+  padding: .5rem 0;
 }
 
 .history_row p {
@@ -252,6 +263,7 @@ body.dark .history_row:hover {
   background-color: white;
 }
 
+/* Loading Text */
 .loading_text {
   height: 100%;
   width: 100%;
@@ -263,25 +275,9 @@ body.dark .history_row:hover {
   color: #777;
 }
 
-p {
-  margin-top: auto !important;
-}
 
-a {
-  text-decoration: none;
-  color: black !important;
-}
 
-h1 {
-  margin: auto !important;
-}
-
-@media only screen and (max-width: 600px) {
-  .header_section h1 {
-    font-size: 1.5em;
-  }
-}
-
+/*Light/Dark Mode */
 body {
   background-color: white;
   color: black;
@@ -296,14 +292,16 @@ body.dark {
 .dark .query_section {
   background-color: #333;
 }
+
+/*Run Query Button in Blue Box */
 .run-query-container {
-  padding: 3px;
+  padding: .3rem;
   display: inline-flex; 
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  margin: 10px 0;
+  border-radius: .5rem;
+  box-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.2);
+  margin: 1rem 0;
 }
 
 .run_query_btn {
@@ -311,12 +309,12 @@ body.dark {
   font-weight: bold;
   background-color: #007bff !important;
   border: none;
-  padding: 6px 14px;
+  padding: .6rem 1.4rem;
   cursor: pointer;
   font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 4px; 
+  gap: .4rem;
 }
 
 .run_query_btn::before {
@@ -326,18 +324,19 @@ body.dark {
 
 .run_query_btn:hover {
   background-color: cyan !important;
+  color : black !important;
 }
 
-
+/*Button to Toggle History */
 .toggle-btn {
   background-color: #007bff;
   color: white;
   font-size: 1rem;
   font-weight: bold;
   border: none;
-  padding: 8px 16px;
+  padding: .8rem 1.6rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: .5rem;
 }
 
 .toggle-btn:hover {
@@ -346,20 +345,21 @@ body.dark {
 
 .history_section {
   background: white;
-  padding: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  box-shadow: .2rem .2rem .5rem rgba(0, 0, 0, 0.2);
 }
 
 .history_border {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 5px;
-  margin-bottom: 5px;
+  border-bottom: .1rem solid rgba(0, 0, 0, 0.1);
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
 }
+/*Download button*/
 .download_json_btn{
   margin-left: 1rem;
   background-color: forestgreen !important;
   color: white !important;
-  padding: 6px 14px;
+  padding: .6rem 1.4rem;
   cursor: pointer;
   font-size: 1rem;
 }
@@ -369,4 +369,5 @@ body.dark {
 }
 .download_json_btn:hover{
   background-color: limegreen!important;
+  color : black !important;
 }

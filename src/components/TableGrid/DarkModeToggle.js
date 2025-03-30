@@ -9,7 +9,7 @@ const DarkModeToggle = () => {
 
   return (
     <IconButton onClick={() => setDarkMode(!darkMode)} color="inherit">
-      {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+      {darkMode ? <LightModeIcon sx={{fontSize: '1.8rem'}} /> : <DarkModeIcon sx={{fontSize: '1.8rem'}}/>}
     </IconButton>
   );
 };
