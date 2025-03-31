@@ -12,7 +12,7 @@ export const suggestions = [
 export const data = [
   {
     id: 0,
-    query: "SELECT * FROM territories",
+    query: "SELECT * FROM territories;",
     headcells: [
       {
         id: "territoryID",
