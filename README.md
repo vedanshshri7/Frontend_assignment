@@ -41,12 +41,12 @@ Also,I added Screenshots of page load time in a later section.
 
 ## WebSite OverView
 
-<img width="720" alt="No query" src="https://i.imgur.com/nKnhANT.png">
-<img width="720" alt="Queries" src="https://i.imgur.com/U2vBUzX.png">
-<img width="720" alt="Output" src="https://i.imgur.com/IFBFcQG.png">
-<img width="720" alt="History" src="https://i.imgur.com/vDcS1Pr.png">
-<img width="720" alt="Theme" src="https://i.imgur.com/oV7uOEZ.png">
-<img width="720" alt="Download Json" src="https://i.imgur.com/PG7Budx.png">
+<img width="720" alt="No query" src="https://github.com/vedanshshri7/vedanshshri7/blob/main/Screenshot%202025-03-31%20185217.png">
+<img width="720" alt="Queries" src="https://github.com/vedanshshri7/vedanshshri7/blob/main/Screenshot%202025-03-31%20185157.png">
+<img width="720" alt="Output" src="https://github.com/vedanshshri7/vedanshshri7/blob/main/Screenshot%202025-03-31%20185240.png">
+<img width="720" alt="History" src="https://github.com/vedanshshri7/vedanshshri7/blob/main/Screenshot%202025-03-31%20185332.png">
+<img width="720" alt="Theme" src="https://github.com/vedanshshri7/vedanshshri7/blob/main/Screenshot%202025-03-31%20185425.png">
+<img width="720" alt="Download Json" src="https://github.com/vedanshshri7/vedanshshri7/blob/main/Screenshot%202025-03-31%20185446.png">
 
 ## Website Performance
 
