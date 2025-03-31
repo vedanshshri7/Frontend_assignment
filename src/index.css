@@ -12,7 +12,7 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-  /* 🔹 Responsive */
+  /* Responsive */
   @media (max-width: 400px) {
     html{
       font-size: 40%;

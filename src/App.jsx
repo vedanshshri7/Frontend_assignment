@@ -1,37 +1,33 @@
 import React, { useState, useEffect, Suspense, useCallback, useMemo, useTransition } from "react";
 import "./App.css";
 import { Button, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Dropdown } from "react-bootstrap";
 import { data, suggestions } from "./data/sqlData";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { DarkModeProvider } from "./DarkModeContext.js";
-import DarkModeToggle from "./components/TableGrid/DarkModeToggle";
+import { DarkModeProvider } from "./components/DarkMode/DarkModeContext.js";
+import DarkModeToggle from "./components/DarkMode/DarkModeToggle.js";
 import SqlEditor from "./components/SqlEditor";
 import { downloadJSON } from "./data/downloadJSON";
+import { HistoryComponent } from "./components/History/History.jsx";
 
-// ✅ Preload `TableGrid` to reduce lazy-load delay
 const TableGrid = React.lazy(() => import("./components/TableGrid/TableGrid"));
 
 function App() {
   const [queryText, setQueryText] = useState("-- Select a query and press 'Run Query' to execute "); 
-  const [history, setHistory] = useState([]);
   const [tableData, setTableData] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [loading, setLoading] = useState(false);
-  const [toggleButton, setToggleButton] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const [history, setHistory] = useState([]);
 
-  // ✅ Preload dynamically imported components for faster rendering
   useEffect(() => {
     import("./components/TableGrid/TableGrid");
   }, []);
 
-  // ✅ Optimized Query Execution
   const handleRunQuery = () => {
-    const selectedText = window.getSelection().toString().trim() || queryText.trim(); // Use selected text or full queryText
+    const selectedText = window.getSelection().toString().trim() || queryText.trim(); 
   
     if (!selectedText || selectedText.startsWith("--")) {
       alert("Query is not selected! Please select a query and press 'Run Query'.");
@@ -41,7 +37,7 @@ function App() {
     let result = data.find((d) => d.query === selectedText) || data[2];
   
     startTransition(() => {
-      setTableData(result); // ✅ Non-blocking state update
+      setTableData(result); // Non-blocking state update
     });
   
     setHistory((prevHistory) => [...prevHistory, selectedText]);
@@ -50,7 +46,6 @@ function App() {
   };
   
   
-  // ✅ Optimized Query Selection (Batch state updates)
   const handleSuggestion = (sgstn) => {
     setQueryText(sgstn);
     setTableData(null);
@@ -65,11 +60,7 @@ function App() {
     setTableData(null);
   };
 
-  const handleToggleBtn = () => {
-    setToggleButton((prev) => !prev);
-  };
 
-  // ✅ Non-blocking download JSON function
   const handleDownloadJSON = () => {
     if (!tableData) {
       setTimeout(() => alert("No query results to download!"), 0);
@@ -78,7 +69,7 @@ function App() {
     setTimeout(() => downloadJSON(tableData), 0);
   };
 
-  // ✅ Memoized Table Rendering to prevent unnecessary re-renders
+  // Memoized Table Rendering to prevent unnecessary re-renders
   const showTableData = useMemo(() => {
     return (
       <div>
@@ -106,23 +97,11 @@ function App() {
     <DarkModeProvider>
       <div className="App">
         <div className="header_section">
-          <div>
-            <Button onClick={handleToggleBtn} className="history_btn" sx={{ fontSize: '2rem' }}>≡</Button>
-            <div className={`history_section ${toggleButton ? "" : "toggle"}`} style={{ overflow: "hidden" }}>
-              <div className="history-container">
-                <h4>History</h4>
-                {history.map((h, idx) => (
-                  <div className="history_row history_border" key={idx}>
-                    <p className="" onClick={() => handleReuseHistory(h)}>{h}</p>
-                    <IconButton aria-label="delete" onClick={() => handleDeleteHistory(idx)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </div>
-                ))}
-              </div>
-              <Button onClick={handleToggleBtn} className="history_btn" sx={{ fontSize: '1.5rem', width: '3rem', height: '3rem' }}>X</Button>
-            </div>
-          </div>
+          <HistoryComponent 
+            history={history}
+            handleReuseHistory={handleReuseHistory} 
+            handleDeleteHistory={handleDeleteHistory}
+          />
           <h1>ATLAN SQL Compiler</h1>
           <div className="dark_mode_icon">
             <DarkModeToggle />
@@ -174,5 +153,4 @@ function App() {
     </DarkModeProvider>
   );
 }
-
 export default App;
