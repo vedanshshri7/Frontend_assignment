@@ -102,7 +102,7 @@ function App() {
             handleReuseHistory={handleReuseHistory} 
             handleDeleteHistory={handleDeleteHistory}
           />
-          <h1>ATLAN SQL Compiler</h1>
+          <h1>SQL Runner</h1>
           <div className="dark_mode_icon">
             <DarkModeToggle />
           </div>
