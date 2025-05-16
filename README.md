@@ -1,9 +1,9 @@
 
-# Atlan SQL RUNNER
+# SQL RUNNER
 
 ## Introduction
 
-This project is a frontend-based SQL Editor developed for the Atlan Frontend Internship task. It provides a simple interface for users to write the SQL queries and view the output. 
+This project is a frontend based SQL Editor developed. It provides a simple interface for users to write the SQL queries and view the output. 
 
 ## Data Storage
 
