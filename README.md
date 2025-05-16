@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This project is a frontend based SQL Editor developed. It provides a simple interface for users to write the SQL queries and view the output. 
+This project is a frontend based SQL Editor. It provides a simple interface for users to write the SQL queries and view the output. 
 
 ## Data Storage
 
